@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Password Generator</title>
+</head>
+<body>
+    <h1>Password Generator</h1>
+    <form method="post" action="{% url 'index' %}">
+        {% csrf_token %}
+        <label for="password_length">Password Length:</label>
+        <input type="number" id="password_length" name="password_length" min="6" max="50" value="12" required>
+
+        <label for="use_letters">Use Letters:</label>
+        <input type="checkbox" id="use_letters" name="features" value="use_letters" checked>
+
+        <label for="use_digits">Use Digits:</label>
+        <input type="checkbox" id="use_digits" name="features" value="use_digits" checked>
+
+        <label for="use_special_chars">Use Special Characters:</label>
+        <input type="checkbox" id="use_special_chars" name="features" value="use_special_chars" checked>
+
+        <button type="submit">Generate Password</button>
+    </form>
+    {% if generated_password %}
+        <p>Your Generated Password: {{ generated_password }}</p>
+    {% endif %}
+</body>
+</html>
